@@ -3,7 +3,7 @@
  */
 
  // Requirements
-const http = require("http");
+const req = require("request");
 
 // Settings
 const country = "92129"
@@ -14,29 +14,10 @@ const apiKey = "63b01d5b61798f3db8b2a64ae863ce42";
 const getString = `${url}?q=${country}&appid=${apiKey}&units=imperial`;
 
 // Make the request
-http.get(getString, (res) =>{
-
-    // Will contain the completed response
-    let body="";
-
-    // Data incoming event listener
-    res.on("data", (data) => {
-        body += data;
-    });
-
-    // Data complete
-    res.on("end", () => {
-       
-        // Convert to JSON for easier parsing
-        const parsed = JSON.parse(body);
-
-        //check the COD value
-        if(parsed.cod == 200) {
-            console.log(`${parsed.main.temp}F, ${parsed.weather[0].description}`);
-        } else {
-            console.log(`Error retieving weather data ${pasrsed.cod}`);
-        }
-    });
-}).on("error", (err) => {
-    console.log(`Error: ${err.message}`);
+req.get({uri: getString, json: true}, (error, response, body) => {
+    if (response.statusCode == 200) {
+        console.log(`${body.main.temp}F, ${body.weather[0].description}`);
+    } else {
+        console.log(`Something really bad happened: ${response.statusCode} :(`);
+    }
 });
