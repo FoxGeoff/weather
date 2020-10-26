@@ -6,4 +6,6 @@
 
 1. run: ```npm install request```
 
-## Task: Internet App using acync await
+## Task: Internet App using Promises - Async: Await
+
+1. readFiles2.js
