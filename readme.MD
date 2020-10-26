@@ -116,7 +116,7 @@ const readAllFiles = async () => {
 readAllFiles();
 ```
 
-1. NOTE: npm builts in module does not support promises
+1. NOTE: npm built in "fs" module does not support promises
 2. FIX: run ```npm install fs-extra --save```
 
 ```JavaScript
