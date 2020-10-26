@@ -78,7 +78,7 @@ readFilePromise("1.txt")
 ```
 
 1.Example of basic promise with a next chain added and using Async Await (readfile3.js)
- 
+
 ```JavaScript
 const fs = require("fs");
 
@@ -113,3 +113,6 @@ const readAllFiles = async () => {
 // call the function
 readAllFiles();
 ```
+
+1. NOTE: npm builts in module does not support promises
+2. FIX: run ```npm install fs-extra --save```
