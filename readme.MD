@@ -1,12 +1,14 @@
 # Project: Node in Action (Manning) - Weather App
 
-## Task: Initial App Setup return ```63.03F, overcast clouds```
+## Kanban Task #2: Node on The Command Line
 
-## Task: Internet App using Request Modules
+### Task: Initial App Setup return ```63.03F, overcast clouds```
+
+### Task: Internet App using Request Modules
 
 1. run: ```npm install request```
 
-## Task: Internet App using Promises - Async: Await
+### Task: Internet App using Promises - Async: Await
 
 1. readFiles2.js
 2. Example of basic promise (readFile2.js)
@@ -138,3 +140,7 @@ const readAllFiles = async () => {
 // call the function
 readAllFiles();
 ```
+
+## Kanban Task #3: Building Web Applications with Node
+
+### Task: A Simple Web Server
