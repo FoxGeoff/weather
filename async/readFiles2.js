@@ -13,7 +13,27 @@ function readFilePromise(fileName) {
   });
 }
 
-readFilePromise("1.txt").then((data) => {
-  myText = "" + data;
-  console.log(myText);
-});
+readFilePromise("1.txt")
+  .then((data) => {
+    myText = data;
+    return readFilePromise("2.txt");
+  })
+  .then((data) => {
+    myText += data;
+    return readFilePromise("3.txt");
+  })
+  .then((data) => {
+    myText += data;
+    return readFilePromise("4.txt");
+  })
+  .then((data) => {
+    myText += data;
+    return readFilePromise("5.txt");
+  })
+  .then((data) => {
+    myText += data;
+    console.log(myText);
+  })
+  .catch((err) => {
+    console.log(`Error! ${err}`);
+  });

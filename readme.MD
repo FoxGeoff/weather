@@ -32,3 +32,5 @@ readFilePromise("1.txt").then((data) => {
   console.log(myText);
 });
 ```
+
+1. Example of basic promise with a next chain added (readfile2.js)
