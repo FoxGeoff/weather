@@ -144,3 +144,19 @@ readAllFiles();
 ## Kanban Task #3: Building Web Applications with Node
 
 ### Task: A Simple Web Server
+
+1. httpServer/index.js
+
+```Javascript
+const http = require("http");
+
+http
+  .createServer((req, res) => {
+    console.log(req.url);
+    res.write("<html><body><h1>Hello, World!</h1></body></html>");
+    res.end();
+  })
+  .listen(8080, (err) => {
+    console.log("listening on port 8080");
+  });
+```
