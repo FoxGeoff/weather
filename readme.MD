@@ -160,3 +160,9 @@ http
     console.log("listening on port 8080");
   });
 ```
+
+### Task: A simple web file server
+
+1. run ```npm init```
+2. run ```npm install fs-extra --save```
+3. create file: httpFileServer.js
