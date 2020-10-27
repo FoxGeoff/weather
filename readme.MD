@@ -167,7 +167,7 @@ http
 2. run ```npm install fs-extra --save```
 3. create file: httpFileServer.js
 
-This is a simple web server, servering up static pages:
+This is a simple web server, serving up static pages:
 
 ```JavaScript
 const http = require("http");
@@ -212,47 +212,59 @@ http.createServer(async (req, res) => {
 
 ### Task: A first web application. Part 1
 
-```Javascript
+```JavaScript
 const http = require("http");
 const fs = require("fs-extra");
-const path = require("path");
 
-// Array of common MIME types
-const contentType = {
-  ".html": "text/html",
-  ".js": "text/javascript",
-  ".css": "text/CSS",
-  ".png": "image/png",
-  ".jpg": "image/jpg",
-  ".gif": "image/gif",
-};
+// Create http Server object
+http
+  .createServer(async (req, res) => {
+    serveFile(res, "form.html");
+  })
+  .listen(8080, (err) => {
+    console.log("Server running at http://127.0.0.1:8080/");
+  });
 
-// Create HTTP Server Object
-http.createServer(async (req, res) => {
-  // Work out the path to the resquested file
-  let filePath = req.url;
-  if (filePath == "/") {
-    filePath = "/index.html";
-  }
-  filePath = `${__dirname}/files${filePath}`;
+// Serve a static file
+async function serveFile(res, filename) {
+  
+    // Get the file
+  console.log(`Serving ${filename}`);
+  let content = await fs.readFile(filename, "utf-8");
 
-  // Read in the file and output it (or return a 404 Not found
-  try {
-    // Get correct content type fo the request file
-    console.log(`Serving ${filePath}`);
-    const content = await fs.readFile(filePath);
-    res.writeHead(200, { "Content-Type": contentType });
-    res.end(content, "utf-8");
-  } catch (err) {
-    console.log(err);
-    res.writeHead(404, { "Content-Type": "text/html" });
-    res.end("<html><body><h1>Not Found</h1></body></html>");
-  }
-}).listen(8080, (err) => { // start listening
-    console.log("Server running at http://127.0.0.1:8125/")
-});
+  // Write out the content
+  res.writeHead(200, { "Content-Type": "text/html" });
+  res.end(content, "utf-8");
+}
 ```
 
+### Form.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Amazing Number Cruncher</title>
+  </head>
+  <body>
+    <form method="POST" action="."> <!--Post to the same page -->
+      <p>
+        Pick a number:
+        <input type="text" name="num1" />
+      </p>
+      <p>
+        Pick a second number
+        <input type="text" name="num2" />
+      </p>
+      <p>
+        <input type="submit" value="Make Amazing Things Happen" />
+      </p>
+    </form>
+  </body>
+</html>
+```
+
+---
 
 ### Task: REST api's
 
@@ -267,4 +279,3 @@ router.get("/", async (req, res, next) => {});
 
 module.exports = router;
 ```
-
