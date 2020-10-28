@@ -264,6 +264,8 @@ async function serveFile(res, filename) {
 </html>
 ```
 
+1. Now we will check the header verb (GET vs POST)
+
 ---
 
 ### Task: REST api's
